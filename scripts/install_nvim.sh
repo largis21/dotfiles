@@ -1,9 +1,10 @@
 #!/bin/bash
 
-FILENAME="nvim-linux64.tar.gz"
+# Install gcc
+sudo apt install build-essential -y
 
 VER=$(curl -s -qI https://github.com/neovim/neovim/releases/latest | awk -F '/' '/^location/ {print  substr($NF, 1, length($NF)-1)}');
-DOWNLOAD_URL="https://github.com/neovim/neovim/releases/download/$VER/$FILENAME"
+DOWNLOAD_URL="https://github.com/neovim/neovim/releases/download/$VER/nvim-linux64.tar.gz"
 
 echo "Downloading latest release of Neovim..."
 wget $DOWNLOAD_URL -q --show-progress
