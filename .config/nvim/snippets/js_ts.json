@@ -1,0 +1,22 @@
+{
+ "Sanity Field": {
+    "prefix": "snfl",
+    "body": [
+      "defineField({",
+      "\tname: \"${1:name}\",",
+      "\ttitle: \"${2:${1}}\",",
+      "\ttype: \"${3}\",",
+      "}),"
+    ]
+  },
+ "Sanity Type": {
+    "prefix": "sntp",
+    "body": [
+      "defineType({",
+      "\tname: \"${1:name}\",",
+      "\ttitle: \"${2:${1}}\",",
+      "\ttype: \"${3}\",",
+      "}),"
+    ]
+  }
+}

@@ -1,0 +1,24 @@
+{
+	"name": "example-snippets",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+	"contributes": {
+		"snippets": [
+			{
+				"language": [
+          "javascript",
+          "javascriptreact",
+          "typescript",
+          "typescriptreact"
+        ],
+				"path": "./js_ts.json"
+			},
+			{
+				"language": "twig",
+				"path": "./twig.json"
+			}
+		]
+	}
+}
+
