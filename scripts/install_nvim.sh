@@ -19,7 +19,7 @@ tar -xzf nvim-linux64.tar.gz
 
 # Move Neovim to /usr/local (assuming a system-wide installation)
 echo "Installing Neovim..."
-sudo mv nvim-linux64/bin/nvim /usr/bin/nvim
+sudo mv nvim-linux64 /usr/local/nvim
 
 # Clean up
 rm nvim-linux64.tar.gz

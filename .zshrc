@@ -3,7 +3,7 @@
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
-export PATH="/home/largis21/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/largis21/.cargo/bin:/usr/local/bin/composer"
+export PATH="/home/largis21/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin:/home/largis21/.cargo/bin:/usr/local/bin/composer:/usr/local/nvim/bin"
 export TERM="xterm-256color"
 
 # Set name of the theme to load --- if set to "random", it will
