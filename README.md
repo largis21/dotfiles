@@ -5,6 +5,10 @@
 3. Install gnu stow, for debian `sudo apt install stow`
 4. `stow .`
 
+# TMUX
+
+Dont forget to `^b I` to install tmux plugins :)
+
 # Install applications
 
 1. Run `chmod +x scripts/*`
