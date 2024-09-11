@@ -1,3 +1,5 @@
+jjlocal augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+
 return {
   "neovim/nvim-lspconfig",
   event = { "BufReadPre", "BufNewFile" },
@@ -29,6 +31,17 @@ return {
 
     local on_attach = function(client, bufnr)
       opts.buffer = bufnr
+
+      if client.supports_method("textDocument/formatting") then
+        vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          group = augroup,
+          buffer = bufnr,
+          callback = function()
+            vim.lsp.buf.format()
+          end,
+        })
+      end
 
       opts.desc = "Show LSP references"
       keymap.set("n", "gR", "<cmd>Telescope lsp_references<CR>", opts) -- show definition, references
@@ -85,8 +98,38 @@ return {
     -- configure typescript server with plugin
     lspconfig["tsserver"].setup({
       capabilities = capabilities,
-      on_attach = on_attach,
+      on_attach = function(client, bufnr)
+        client.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+          if result.diagnostics == nil then
+            return
+          end
+
+          -- Filter out diagnostics with specific codes (6133 is the unused variable code)
+          local idx = 1
+          while idx <= #result.diagnostics do
+            local entry = result.diagnostics[idx]
+            if entry.code == 6133 then -- TS6133: unused variable
+              table.remove(result.diagnostics, idx)
+            else
+              idx = idx + 1
+            end
+          end
+          vim.lsp.diagnostic.on_publish_diagnostics(_, result, ctx, config)
+
+          on_attach(client, bufnr)
+        end
+      end,
       filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
+    })
+
+    lspconfig.eslint.setup({
+      filetypes = { "typescriptreact", "typescript" },
+      on_attach = function(client, bufnr)
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end,
     })
 
     -- configure css server
