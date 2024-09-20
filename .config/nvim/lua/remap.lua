@@ -2,7 +2,7 @@ vim.g.mapleader = " "
 -- netrw
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 
--- Control s to save 
+-- Control s to save
 vim.keymap.set("n", "<C-s>", vim.cmd.w)
 
 -- Move line

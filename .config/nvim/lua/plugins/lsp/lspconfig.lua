@@ -1,4 +1,4 @@
-jjlocal augroup = vim.api.nvim_create_augroup("LspFormatting", {})
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 return {
   "neovim/nvim-lspconfig",
@@ -119,17 +119,7 @@ return {
           on_attach(client, bufnr)
         end
       end,
-      filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact" },
-    })
-
-    lspconfig.eslint.setup({
-      filetypes = { "typescriptreact", "typescript" },
-      on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-          buffer = bufnr,
-          command = "EslintFixAll",
-        })
-      end,
+      filetypes = { "typescript", "typescriptreact", "javascript", "javascriptreact", "mjs" },
     })
 
     -- configure css server
@@ -148,7 +138,7 @@ return {
     lspconfig["emmet_ls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
-      filetypes = { "html", "twig", "typescriptreact", "javascriptreact", "css", "sass", "scss", "less", "svelte", "vue", "astro" },
+      filetypes = { "html", "twig", "typescriptreact", "javascript", "javascriptreact", "css", "sass", "scss", "less", "svelte", "vue", "astro" },
     })
 
     -- configure lua server (with special settings)
