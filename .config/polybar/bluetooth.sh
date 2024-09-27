@@ -6,5 +6,7 @@ do
     info=`bluetoothctl info $uuid`
     if echo "$info" | grep -q "Connected: yes"; then
        echo "$info" | grep "Name"
+    else 
+       echo ""
     fi
 done
